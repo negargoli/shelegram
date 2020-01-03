@@ -1,0 +1,66 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang=''>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static "css/style.css"%}">
+    <link rel="stylesheet" href="{% static "css/bootstrap.min.css"%}">
+    <link rel="stylesheet" href="{% static "css/bootstrap.css"%}">
+    <link rel="stylesheet" href="{% static "mainPageCssfile.css"%}" type="text/css">
+    <link rel="stylesheet" href="{% static "mainPageCssfile.css"%}" type="text/css">
+         <link href="../static/css/semantic.css" rel="stylesheet">
+   <link href="../static/css/semantic.min.css" rel="stylesheet">
+    {% block head %}
+    {% endblock %}
+
+
+</head>
+
+<body dir="rtl">
+      <div class="ui clearing segment" style="background: #c0c0ff">
+    <div id="logo"  style="color: #0e566c "  style="font-size:small">
+                   <p></p>
+                   <strong>شلگرام</strong>
+               </div>
+
+                <div class="header_feature">
+                    <a href="/logout"><i class="fa fa-sign-out"></i> خروج</a>
+                </div>
+
+                <div class="header_feature">
+                    <a href="/karbari"><i class="settings icon"></i> حساب کاربری</a>
+                </div>
+                <div class="header_feature">
+                    <a href="/mainAfterLogin">صفحه اصلی</a>
+                </div>
+                <div class="header_feature">
+                        <img src="{{ request.user.userProfile.image.url }}" class="img-circle" style="width: 30px;height: 30px;"> {{ request.user.userProfile.displayed_name }}
+                </div>
+
+</div>
+
+<!-- footer -->
+        <div id="main" style="height: 80%;width: 100%">
+            <div style="width: 20%; float: right;">
+                {% block left %}
+                {% endblock %}
+            </div>
+           <div style="width: 3%;float: right">
+                {% block middle %}
+                {% endblock %}
+            </div>
+            <span style="width: 50%;float: right">
+                {% block right %}
+                {% endblock %}
+            </span>
+        </div>
+        <div class="navbar navbar-bottom" style="margin: 0px;padding-left: 42%;height: 10%; background-color: #f0f0ff;">
+                <span class="navbar-text">
+@تمام حقوق این سایت مربوط به شلگرام است.
+                </span>
+        </div>
+</body>
+
+<html>

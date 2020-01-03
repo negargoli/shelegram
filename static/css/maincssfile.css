@@ -1,0 +1,28 @@
+.container-fluid {
+    min-width: 100%;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+.page-header{
+    margin: 0px;
+    padding-left: 5%;
+    font-weight: bold;
+}
+#logo{
+	width: 200px;
+	padding: 0px;
+	margin-left: 0px;
+}
+#loginbutton:hover{
+color: green;
+}
+html {
+	height: 100%;
+	/*Image only BG fallback*/
+	background: url('../images/gs.png');
+	/*background = gradient + image pattern combo*/
+	background: 
+		linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)), 
+		url('../images/gs.png');
+}

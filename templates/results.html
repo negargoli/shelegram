@@ -1,0 +1,21 @@
+{% extends "headerAfterLogin.html" %}
+{% load staticfiles %}
+{% block left %}
+    <table style="height: 100%">
+        {% for g in groups %}
+            <tr>
+                <td style="background-color: #c0c0ff;">{{ g.name }}</td>
+                <td>
+                    <form method="POST" action="/sendrequest/" class="navbar-form pull-right">
+                     {% csrf_token %}
+                        <input type="hidden" name="gid" value="{{ g.pk }}">
+                       <input type="submit" class="btn" value="send request to admin" >
+                     </form>
+                </td>
+            </tr>
+            <tr >
+            <td style="height: 5%;width: 100%;"> &ensp;&ensp;&ensp;</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "headerAfterLogin.html" %}
+{% load staticfiles %}
+
+    <!-- multistep form -->
+{% block right%}
+    <form action="" method="post" id="msform" enctype="multipart/form-data">
+        <fieldset>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="makegroup" />
+        </fieldset>
+    </form>
+{% endblock %}
+
+
+

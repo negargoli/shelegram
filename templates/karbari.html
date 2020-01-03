@@ -1,0 +1,87 @@
+{% extends "headerAfterLogin.html" %}
+{% load staticfiles %}
+
+{% block right %}
+   <table>
+       <tr>
+            <td>
+            <a href="/makegrp">
+           ساختن گروه
+            </a>
+            </td>
+        </tr>
+       <tr style="height: 10%;width: 100%">
+         <td>
+           <form method="get" action="/karbari/" class="navbar-form pull-right">
+                <input type="text" id="searchBox" class="input-medium search-query" name="q" placeholder="Search">
+                <input type="submit" class="btn" value="Search" >
+            </form>
+         </td>
+       {% for g in searchResult %}
+           <tr>
+                <td style="background-color: #c0c0ff;">{{ g.name }}</td>
+                <td>
+                    <form method="POST" action="/sendrequest/" class="navbar-form pull-right">
+                     {% csrf_token %}
+                        <input type="hidden" name="gid" value="{{ g.pk }}">
+                       <input type="submit" class="btn" value="send request to admin" >
+                     </form>
+                </td>
+           </tr>
+           <tr >
+            <td style="height: 5%;width: 100%;"> &ensp;&ensp;&ensp;</td>
+            </tr>
+       {% endfor %}
+   </tr>
+   </table>
+{% endblock %}
+  {% block middle %}
+     </table>
+    <div style="color: #d58512; font-size: medium">بررسی درخواست ها </div>
+    {% for r in req %}
+
+            <div style="background-color: #c0c0ff; width: 40%">
+                {{ r.group.name }} </div>
+            <div style="background-color:lightgreen; width: 40%">
+                {{ r.person.displayed_name }}
+            </div>
+
+            <div>
+                <form action="/karbari/" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="rid" value="{{ r.pk }}">
+
+                    <button type="submit" name="accept" value="accept" class="btn">accept!</button>
+                      <button  style="background-color: #a94442"type="submit" name="reject" value="reject" class="btn">reject!</button>
+
+                </form>
+            </div>
+         <p>
+
+        </p>
+
+
+        </table>
+    {% endfor %}
+{% endblock %}
+
+{% block left %}
+    <table>
+     <tr>
+          <div  style="font-size: medium">{{ person.displayed_name }}</div>
+         <p>
+         </p>
+          <img src="{{ request.user.userProfile.image.url }}" class="img-circle" style="width: 30px;height: 30px;">
+         <p></p><p></p>
+          <div style="font-size: medium">{{ person.user }}</div>
+        </tr>
+
+        <tr><td>
+            <p></p>
+            <p></p>
+            <a style="font-size: medium ; color: #a94442 ; font-family: Accordion" href="/edit_profile">
+ویرایش پروفایل
+            </a>
+        </td></tr>
+    </table>
+{% endblock %}

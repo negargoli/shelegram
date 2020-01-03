@@ -1,0 +1,58 @@
+{% extends "headerfirst.html" %}
+{% load staticfiles %}
+{% block head %}
+    <script>
+        function call(url){
+            window.open(url,"_self")
+            window.op
+        }
+    </script>
+{% endblock %}
+
+
+
+
+
+
+
+{% block left %}
+    <table>
+        <tr>
+            <td><button class="btn" onclick="call('/mainAfterLogin/?mark=True')">mark all as read</button></td>
+        </tr>
+        {% for g in groups %}
+             <div class="ui clearing segment" style="background-color: #00b5ad">
+
+                <a  style="color: #262626" href="?groupId={{ g.pk }}" methods="GET" > {{ g.name }}</a>
+
+              <div   style="color:indianred ">
+              {{ notif.pop }}
+               </div>
+              </div>
+        {% endfor %}
+    </table>
+{% endblock %}
+ {% block middle %}
+     <div>.</div>
+ {% endblock %}
+{% block right %}
+    <table>
+        {% for p in posts %}
+              <div class="ui clearing segment" style="background-color:lightgrey">
+
+               <img src="{{ p.creator.user.userProfile.image.url }}" class="img-circle" style="width: 30px;height: 30px;">
+               <div>{{ p.creator.user.username }} : </div>
+
+                <div>{{ p.text }}</div>
+                  <div style="color:dodgerblue" >  {{ p.date }} </div>
+           </div>
+        {% endfor %}
+    </table>
+            <form action="/mainAfterLogin/" method="POST" >
+            {%  csrf_token %}
+            <input style="box-sizing: inherit"  type="text" name="message">
+            <input type="submit" class="btn" value="send">
+            <input type="hidden" name="gid" value="{{ groupId }}">
+        </form>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "headerAfterLogin.html" %}
+{% load staticfiles %}
+{% block left %}
+<h1 style="color: #d58512">تدوین پروفایل</h1>
+
+
+<form  method="POST" action="/edit_profile/"class="ui form">
+  <div class="field">
+     {% csrf_token %}
+    {{ form.as_p }}
+  </div>
+  <button class="ui button" type="submit">ثبت</button>
+</form>
+
+
+{% endblock %}

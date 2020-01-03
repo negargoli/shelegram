@@ -1,0 +1,14 @@
+{% extends "header.html" %}
+{% load staticfiles %}
+
+    <!-- multistep form -->
+{% block main %}
+    <form action="" method="post" id="msform" enctype="multipart/form-data">
+        <fieldset>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" />
+        </fieldset>
+    </form>
+{% endblock %}
+
